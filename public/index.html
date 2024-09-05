@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Add my css -->
+    <link rel="stylesheet" href="chat-app/styles/login.css">
+    <link rel="stylesheet" href="chat-app/styles/transition.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="transition transition-3 is-active"></div>
+    
+    <video autoplay muted loop id="video-background">
+        <source src="/chat-app/img/burning.mp4" type="video/mp4">
+    </video>    
+
+    <div class="box">
+        <div class="form" id="login-form">
+            <img src="chat-app/img/FLAMETALK.png" alt="FLAMETALK">
+            <form>
+                <div class="inputbox" style="display: flex;">
+                    <i class="fa fa-user"></i>
+                    <input type="text" placeholder="Username or Email" id="username" required>
+                </div>                
+                <div class="inputbox" style="display: flex;margin-bottom: -10%;">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" placeholder="Password" id="password" required>
+                    <label for="password" class="show-password-icon fa fa-eye-slash" onclick="togglePasswordVisibility()"></label>
+                </div>
+            </form>
+            <div class="forgot-password">
+                <a href="chat-app/forgor.html" id="forgot">Forgot Password?</a> <!-- Thêm nút quên mật khẩu -->
+            </div>
+            <div class="button-group">
+                <button type="button" class="sub" id="submit">Login</button>                 
+            </div>
+            <div class="social-login">
+                <h4>Or login with</h4>
+                <button type="button" id="google-login" name="google-login" class="btn btn-danger btn-lg btn-block">
+                    <img src="/chat-app/img/gg.png" alt="Google" style="width:40px ;margin-left: -5%;">
+                </button>                
+            </div>
+            <div class="register-page">
+                <button type="button" id="registerPage">Register</button>       
+            </div>       
+        </div>
+    </div>    
+    <br>   
+    <script type="module" src="chat-app/scripts/login.js"></script>
+    <script src="chat-app/scripts/show.js"></script>
+    <script src="chat-app/scripts/transition.js"></script>
+</body>
+</html>
+

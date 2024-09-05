@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Add my css -->
+    <link rel="stylesheet" href="styles/display.css">
+    <link rel="stylesheet" href="styles/transition.css">
+    <title>Chat Room</title>
+</head>
+<body>
+    <div class="transition transition-3 is-active"></div>
+    <div style="display: flex;">
+        <div id="sidebar-container">
+            <video id="video-background" autoplay loop muted>
+                <source src="/chat-app/img/Blye_Fire_Wall_1.mp4" type="video/mp4">
+            </video>
+            <div class="sidebar">
+                <div class="col" style="display: flex; justify-content: space-between;">
+                    <!-- User info and logout button -->
+                    <div class="userinfo-wrapper">
+                        <div class="avatar-container">
+                            <img id="avatar" alt="Avatar" class="avatar-img">
+                        </div>
+                        <span id="displayName" class="username"></span>
+                    </div>
+                    <button id="logout" style="margin-top: 10px;"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
+                </div>
+                <div class="col">
+                    <!-- Room list -->
+                    <div id="room-list">
+                        <div class="panel" id="room-panel">
+                            <div class="panel-header" id="room-panel-header"  style="display: flex;flex-direction: row;justify-content: space-between;">
+                                <div style="display: flex;flex-direction: column;justify-content: space-between;">
+                                    <i class="fas fa-list"></i> 
+                                    Danh sách các phòng
+                                </div>
+                                <img id="FLAMETALK-image2" src="img/FLAMETALK.png" alt="FLAMETALK">
+                            </div>
+                            <div class="panel-content" id="room-panel-content">
+                                <!-- Rooms will be dynamically added here -->
+                            </div>
+                        </div>
+                        <button class="add-room" id="add-room-button" style="border-radius: 5px; border: none; background: #1890ff;">
+                            <i class="fas fa-plus"></i>
+                        </button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="chatwindow-container">
+            <!-- Chat window -->
+            <div class="chatwindow-wrapper">
+                <div class="chatwindow-header">
+                    <!-- Room title and description -->
+                    <img id="FLAMETALK-image" src="img/FLAMETALK.png" alt="FLAMETALK">
+                    <div class="header__info" style="color: aliceblue;">
+                        <p class="header__title" id="header_title"></p>
+                        <span class="header__description" id="header_description"></span>
+                    </div>
+                    <!-- Buttons for actions like inviting members -->
+                    <div class="button-group">
+                        <div class="avatar-group">
+                            <!-- Individual member avatars -->
+                            <!-- Tooltip will display member names -->
+                            <!-- If more than 2 members, display '+n' indicating additional members -->
+                        </div>
+                        <button class="invite-button"><i class="fas fa-user-plus"></i> Invite</button>
+                        <button class="edit-room-button" id="edit-room-button"><i class="fas fa-edit"></i> Edit Room Info</button>                        
+                        <button class="inout-button" id="inout-button"></button>
+                    </div>      
+                </div>
+                <!-- Chat messages -->
+                <div class="chatwindow-content">
+                    <div class="message-list">
+                        <!-- Tin nhắn sẽ được thêm động vào đây -->            
+                    </div>
+                    <!-- Form for sending messages -->
+                    <form class="form">
+                        <button class="attach-button" type="button" style="height: 100%;"><i class="fa fa-image"></i></button>
+                        <button class="emoji-button" type="button"  style="height: 100%;"><i class="fa-regular fa-face-smile"></i></button>
+                        <input class="input" type="text" placeholder="Enter your message..." style="background-color: #fff;color: #000;">
+                        <button class="send-button" type="button" id="sendButton"  style="height: 100%;"><i class="fa fa-paper-plane"></i></button>
+                    </form>                    
+                </div>
+            </div>
+        </div>        
+    </div>
+
+    <!-- Modal for selecting avatar and updating user info -->
+    <div id="avatarModal" class="modal">
+        <div class="modal-content" style="height: fit-content;">
+            <span class="close2">&times;</span>
+            <div class="avatarModalHeader">
+                <img src="img/FLAMETALK.png" alt="FLAMETALK">
+                <h2 style="display: flex;justify-content: center;">Choose Avatar</h2>
+            </div>
+            <!-- Avatar options -->
+            <div class="avatar-carousel" style="margin-bottom: 5%;">
+                <div class="avatar-options">
+                    <img class="avatar-option" src="img/ava.png" alt="Avatar 1">
+                    <img class="avatar-option" src="img/modalbg.png" alt="Avatar 2">
+                    <img class="avatar-option" src="img/bg.jpg" alt="Avatar 3">
+                    <img class="avatar-option" src="img/F8UZyOvbwAAl4Ww.jpg" alt="Avatar 4">
+                    <img class="avatar-option" src="img/20230625_212838.jpg" alt="Avatar 5">
+                </div>
+            </div>
+            <!-- Upload button -->
+            <button class="custom-upload-button" onclick="document.getElementById('uploadButton').click()"><i class="fas fa-upload" style="margin-right: 10px;"></i> Upload Image</button>
+            <input type="file" id="uploadButton">            
+            <!-- Form for updating display name and password -->
+            <form id="userInfoForm">
+                <label for="newDisplayName">Change Display Name:</label>
+                <input type="text" id="newDisplayName" name="newDisplayName"><br><br>
+
+                <!-- Button to save user info -->
+                <div style="display: flex; justify-content: center;">
+                    <button type="button" id="saveUserInfoButton"><i class="fas fa-save"></i></i> Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+ 
+    <!-- Modal for inviting users -->
+    <div id="inviteModal" class="modal">
+        <div class="modal-content">
+            <span class="close2" onclick="closeModal('inviteModal')">&times;</span>
+            <div style="display: flex; justify-content: center;margin-bottom: 5%;">
+                <img src="img/FLAMETALK.png" alt="FLAMETALK" style="width: 50px;">
+                <h2 style="display: flex;justify-content: center;">Invite Users</h2>
+            </div>
+            <!-- Thêm ô tìm kiếm -->
+            <input type="text" id="searchInput" placeholder="Tìm kiếm người dùng..." style="height: 10%;">
+            <div id="user-list-container">
+                <!-- Danh sách người dùng sẽ được thêm động vào đây -->
+            </div>                  
+            <!-- Thêm nút "Mời" -->
+            <button id="inviteSelectedButton"><i class="fas fa-user-plus" style="margin-right: 10px;"></i>Invite</button>
+        </div>
+    </div>
+
+    <!-- Modal for inviting users -->
+    <div id="memberModal" class="modal">
+        <div class="modal-content" style="padding: 0;">
+            <span class="close2" onclick="closeModal('memberModal')">&times;</span>
+            <div style="display: flex; justify-content: center;margin-bottom: 5%;border-bottom: 1px solid;margin-bottom: 0;">
+                <img src="img/FLAMETALK.png" alt="FLAMETALK" style="width: 50px;">
+                <h2 style="display: flex;justify-content: center;">Room members</h2>
+            </div>
+            <div id="room-members-container">
+                <!-- Danh sách người dùng sẽ được thêm động vào đây -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for picture -->
+    <div id="imgModal" class="modal">
+        <span class="close2" onclick="closeModal('imgModal')">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>    
+
+    <!-- Modal for emoji -->
+    <div id="emojiModal" class="modal">
+        <div id="emojiContainerHead" class="emoji-container">
+            <img src="img/FLAMETALK.png" alt="FLAMETALK" style="width: 30px; margin-left: 10px;">
+            <span class="close2" onclick="closeModal('emojiModal')">&times;</span>
+        </div>
+        <div id="emojiContainer" class="emoji-container">
+        </div>        
+    </div>
+
+    <!-- Import logout and message scripts -->
+    <script type="module" src="scripts/logout.js"></script>
+    <script type="module" src="scripts/message.js"></script>
+    <script type="module" src="scripts/room.js"></script>
+    <script type="module" src="scripts/info.js"></script>
+    <script type="module" src="scripts/member.js"></script>
+    <!--<script type="module" src="scripts/changepass.js"></script>-->
+    <script src="scripts/modal.js"></script>
+    <script src="scripts/show.js"></script>
+    <script src="scripts/transition.js"></script>
+    <script src="scripts/mobile.js"></script>      
+</body>
+</html>

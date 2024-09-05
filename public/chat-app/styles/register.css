@@ -1,0 +1,242 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translate(-50%, -50%);
+}
+
+.box {
+    padding: 1% 3%;
+    width: 22%;
+    height: 55%;
+    backdrop-filter: blur(50px);
+    border-radius: 20px;
+    background: url(/chat-app/img/bg2.webp);
+    background-size: cover;
+    border: 1px solid rgb(255 255 255);
+}
+.box .form {
+    padding: 1% 2%;
+    margin-left: 3%;
+}
+
+.box .form img {
+    width: 40%;
+    display: block; 
+    margin: 0 auto;
+}
+
+.box .form form {
+    margin-top: 10%;
+    align-items: center;
+}
+
+.box .form form .inputbox input {
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 0.1rem solid #12151e;
+    margin-bottom: 20%;
+    color: #fff;
+    width: -webkit-fill-available;
+}
+
+.inputbox i {
+    margin-right: 10px;
+    color: #d1cccc;
+    font-size: 18px;
+}
+
+.inputbox:hover i {
+    transform: scale(1.5); 
+    transition: ease 1s;
+}
+
+.box .form form .inputbox input::placeholder {
+    color: lightgray
+}
+
+.btn-group-lg>.btn,
+.btn-lg {
+    font-size: 1.7vw;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5%;
+    margin-top: 2%;
+}
+
+.button-group .sub {
+    padding: 1% 2%;
+    color: #fff;
+    border: none;
+    outline: none;
+    background: -webkit-linear-gradient(left, #2d388a,  #00aeef , #00ff8f);
+    cursor: pointer;
+    font-size: 1.6vw;
+    width: 100%;
+    border-radius: 25px;
+    margin-inline: 10%;
+}
+
+/* Định nghĩa keyframes cho animation */
+@keyframes changeBackground {
+    0% { background: -webkit-linear-gradient(left, #2d388a,  #00aeef, #00ff8f); }
+    50% { background: -webkit-linear-gradient(left, #00aeef, #00ff8f, #2d388a); }
+    100% { background: -webkit-linear-gradient(left, #00ff8f, #2d388a, #00aeef); }
+}
+
+/* Áp dụng animation cho nút khi hover */
+.button-group .sub:hover {
+    animation: changeBackground 0.1s ease-in-out forwards; /* Thực hiện animation */
+}
+
+.register-btn {
+    width: calc(50% - 0.5%);
+}
+
+.show-password-icon {
+    width: 2%;
+    height: 2%;
+    display: inline-block;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #fff;
+}
+
+.fa-eye-slash:before {
+    content: "\f070";
+}
+
+.fa-eye:before {
+    content: "\f06e";
+}
+
+.password-hidden + .show-password-icon {
+    display: none;
+}
+
+h4{
+    font-size: 15px;
+    color: white;
+    border-bottom: 2px solid;
+    margin-inline: 20%;
+    text-align: center;
+}
+
+.forgot-password{
+    display: flex;
+    justify-content: flex-end;
+    color: black;
+    margin-bottom: 10%;
+}
+
+.forgot-password a {
+    color: #cfe3ea; /* Thay thế your-desired-color bằng mã màu bạn muốn */
+}
+
+.forgot-password a:hover {
+    color: #151515; /* Thay thế your-hover-color bằng mã màu bạn muốn khi hover */
+}
+
+.login-page button {
+    background: -webkit-linear-gradient(left, #2d388a,  #00aeef , #00ff8f);
+    border: 2px solid #ffffff; 
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.6vw;
+    border-radius: 25px; 
+    cursor: pointer;
+    width: 100%;
+    transform: scale(0.5);
+}
+
+.login-page button:hover {
+    animation: changeBackground 0.1s ease-in-out forwards; /* Thực hiện animation */
+}
+
+.box .form form .inputbox select option {
+    background: rgba(255, 255, 255, 0.1); /* Màu nền cho option */
+    color: #000; /* Màu chữ cho option */
+}
+
+.box .form form .inputbox select:focus {
+    border-bottom: 1px solid #0cc0df; /* Màu viền dưới khi focus vào dropdownlist */
+}
+
+.box .form form .inputbox label {
+    margin-bottom: 10px; /* Khoảng cách giữa label và dropdownlist */
+}
+
+#security-question{
+    width: 100%;
+    border: solid 1px #131111;
+    background: transparent;
+    margin-bottom: 5%;
+    color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    /* CSS chỉ áp dụng cho các thiết bị có chiều rộng màn hình nhỏ hơn hoặc bằng 768px */
+
+    .box {
+        width: 70%;
+        padding: 2% 3%;
+        height: auto; /* Hoặc chỉ định kích thước phù hợp khác */
+    }
+
+    .box .form {
+        padding: 2% 2%;
+    }
+
+    .inputbox i {
+        margin-right: 5px; /* Thay đổi margin phù hợp với kích thước màn hình nhỏ hơn */
+        font-size: 14px; /* Thay đổi kích thước phù hợp */
+    }
+
+    .button-group .sub {
+        padding: 2% 3%;
+        font-size: 14px; /* Thay đổi kích thước phù hợp */
+    }
+
+    .social-login h4 {
+        width: 60%;
+        font-size: 14px; /* Thay đổi kích thước phù hợp */
+    }
+
+    h4 {
+        font-size: 12px; /* Thay đổi kích thước phù hợp */
+    }
+
+    .login-page button {
+        font-size: 12px;
+    }
+
+    #google-login {
+        width: 30%;
+        transform: scale(0.5);
+    }
+}

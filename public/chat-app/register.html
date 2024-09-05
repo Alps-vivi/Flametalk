@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Add my css -->
+    <link rel="stylesheet" href="styles/register.css">
+    <link rel="stylesheet" href="styles/transition.css">
+    <title>Register</title>
+</head>
+<body>
+    <div class="transition transition-3 is-active"></div>
+
+    <video autoplay muted loop id="video-background">
+        <source src="img/burning.mp4" type="video/mp4">
+    </video>  
+    
+    <div class="box">
+        <div class="form">
+            <img src="img/FLAMETALK.png" alt="FLAMETALK">
+            <form>
+                <div class="inputbox" style="display: flex;">
+                    <i class="fa fa-user"></i>
+                    <input type="text" placeholder="Username" id="username" required>
+                </div>                
+                <div class="inputbox" style="display: flex;">
+                    <i class="fa fa-envelope" style="margin-right: 3%;"></i>
+                    <input type="email" placeholder="E-mail" id="email" required>
+                </div>
+                <div class="inputbox" style="display: flex;">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" placeholder="Password" id="password" required>
+                    <label for="password" class="show-password-icon fa fa-eye-slash" onclick="togglePasswordVisibility()"></label>
+                </div>
+                <div class="inputbox" style="display: flex;margin-bottom: -5%;">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" placeholder="ReEnterPassword" id="repassword" required>
+                    <label for="repassword" class="show-password-icon fa fa-eye-slash" onclick="toggleRePasswordVisibility()"></label>
+                </div>
+                <div class="inputbox">
+                    <i class="fa fa-key"></i>
+                    <label for="security-question">Security Question:</label>
+                    <select id="security-question" style="width: 100%; margin-bottom: 5%;">
+                        <option value="Tên thành phố ưa thích">Tên thành phố ưa thích</option>
+                        <option value="Động vật ưa thích">Động vật ưa thích</option>
+                        <option value="Loại máy tính đang dùng">Loại máy tính đang dùng</option>
+                        <option value="Lương tháng bao nhiêu">Lương tháng bao nhiêu</option>
+                        <option value="whaet happened in shibuya october 31th">Whaet happened in Shibuya
+                        <!-- Thêm các option khác tùy ý -->
+                    </select>
+                </div>
+                <div class="inputbox" style="margin-bottom: -10%;">
+                    <input type="text" placeholder="Security Answer" id="security-answer" required>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="sub" id="register">Register</button>                   
+                </div>
+            </form>
+            <div class="login-page">
+                <button type="button" class="sub" id="submitPage">back to Login</button>       
+            </div>    
+        </div>
+    </div>
+    <br>   
+    <script type="module" src="scripts/register.js"></script>
+    <script src="scripts/show.js"></script>
+    <script src="scripts/transition.js"></script>
+</body>
+</html>
